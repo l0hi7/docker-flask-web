@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "name": "Tiger Nixon",
+      "position": "System Architect",
+      "office": "Edinburgh",
+      "extn": "5421",
+      "start": "2011/04/25",
+      "salary": "$320,800",
+      "children": [
+        {
+          "name": "Hermione Butler",
+          "position": "Accountant",
+          "office": "Tokyo",
+          "extn": "8422",
+          "start": "2011/07/25",
+          "salary": "$170,750"
+        },
+        {
+          "name": "Ashton Cox",
+          "position": "Junior Technical Author",
+          "office": "London",
+          "extn": "2222",
+          "start": "2010/07/2",
+          "salary": "$970,750"
+        },
+        {
+          "name": "Garrett Butler",
+          "position": "Developer",
+          "office": "Bulma",
+          "extn": "7722",
+          "start": "2044/07/25",
+          "salary": "$770,750"
+        }
+      ]
+    },
+    {
+      "name": "Mortin xon",
+      "position": "Devops",
+      "office": "Turkey",
+      "extn": "9421",
+      "start": "2021/04/27",
+      "salary": "$880,800",
+      "children": [
+        {
+          "name": "Raj",
+          "position": "Fortune",
+          "office": "Delhi",
+          "extn": "8422",
+          "start": "2011/08/2515",
+          "salary": "$170,750"
+        },
+        {
+          "name": "Foru Cox",
+          "position": "Technical",
+          "office": "ondon",
+          "extn": "2222",
+          "start": "2016/02/07",
+          "salary": "$970,750"
+        }
+      ]
+    },
+    {
+      "name": "Dextor",
+      "position": "Oops",
+      "office": "Newyork",
+      "extn": "1121",
+      "start": "2006/04/27",
+      "salary": "$1110,800"
+    }
+  ]
+}

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<!-- 
+Template Name:  NTS PM Tool Responsive WebApp - Template build with Twitter Bootstrap 4
+Version: 4.5.1
+Author: Sunnyat A.
+Website: http://gootbootstrap.com
+Purchase: https://wrapbootstrap.com/theme/NTS PM Tool-responsive-webapp-WB0573SK0?ref=myorange
+License: You must have a valid license purchased only from wrapbootstrap.com (link above) in order to legally use this theme for your project.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Login - - NDMS v1.0
+        </title>
+        <meta name="description" content="Login">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+        <!-- Call App Mode on ios devices -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- base css -->
+        <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="{{ url_for('static', filename='css/vendors.bundle.css') }}">
+        <link id="appbundle" rel="stylesheet" media="screen, print" href="{{ url_for('static', filename='css/app.bundle.css') }}">
+        <link id="mytheme" rel="stylesheet" media="screen, print" href="#">
+        <link id="myskin" rel="stylesheet" media="screen, print" href="{{ url_for('static', filename='css/skins/skin-master.css') }}">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon/favicon-32x32.png') }}">
+        <link rel="mask-icon" href="{{ url_for('static', filename='img/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+        <link rel="stylesheet" media="screen, print" href="{{ url_for('static', filename='css/fa-brands.css') }}">
+        <link rel="stylesheet" media="screen, print" href="{{ url_for('static', filename='css/formplugins/select2/select2.bundle.css') }}">
+    </head>
+    <!-- BEGIN Body -->
+    <!-- Possible Classes
+
+		* 'header-function-fixed'         - header is in a fixed at all times
+		* 'nav-function-fixed'            - left panel is fixed
+		* 'nav-function-minify'			  - skew nav to maximize space
+		* 'nav-function-hidden'           - roll mouse on edge to reveal
+		* 'nav-function-top'              - relocate left pane to top
+		* 'mod-main-boxed'                - encapsulates to a container
+		* 'nav-mobile-push'               - content pushed on menu reveal
+		* 'nav-mobile-no-overlay'         - removes mesh on menu reveal
+		* 'nav-mobile-slide-out'          - content overlaps menu
+		* 'mod-bigger-font'               - content fonts are bigger for readability
+		* 'mod-high-contrast'             - 4.5:1 text contrast ratio
+		* 'mod-color-blind'               - color vision deficiency
+		* 'mod-pace-custom'               - preloader will be inside content
+		* 'mod-clean-page-bg'             - adds more whitespace
+		* 'mod-hide-nav-icons'            - invisible navigation icons
+		* 'mod-disable-animation'         - disables css based animations
+		* 'mod-hide-info-card'            - hides info card from left panel
+		* 'mod-lean-subheader'            - distinguished page header
+		* 'mod-nav-link'                  - clear breakdown of nav links
+
+		>>> more settings are described inside documentation page >>>
+	-->
+    <body>
+        <!-- DOC: script to save and load page settings -->
+        <script>
+            /**
+             *	This script should be placed right after the body tag for fast execution 
+             *	Note: the script is written in pure javascript and does not depend on thirdparty library
+             **/
+            'use strict';
+
+            var classHolder = document.getElementsByTagName("BODY")[0],
+                /** 
+                 * Load from localstorage
+                 **/
+                themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                {},
+                themeURL = themeSettings.themeURL || '',
+                themeOptions = themeSettings.themeOptions || '';
+            /** 
+             * Load theme options
+             **/
+            if (themeSettings.themeOptions)
+            {
+                classHolder.className = themeSettings.themeOptions;
+                console.log("%c✔ Theme settings loaded", "color: #148f32");
+            }
+            else
+            {
+                console.log("%c✔ Heads up! Theme settings is empty or does not exist, loading default settings...", "color: #ed1c24");
+            }
+            if (themeSettings.themeURL && !document.getElementById('mytheme'))
+            {
+                var cssfile = document.createElement('link');
+                cssfile.id = 'mytheme';
+                cssfile.rel = 'stylesheet';
+                cssfile.href = themeURL;
+                document.getElementsByTagName('head')[0].appendChild(cssfile);
+
+            }
+            else if (themeSettings.themeURL && document.getElementById('mytheme'))
+            {
+                document.getElementById('mytheme').href = themeSettings.themeURL;
+            }
+            /** 
+             * Save to localstorage 
+             **/
+            var saveSettings = function()
+            {
+                themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+                {
+                    return /^(nav|header|footer|mod|display)-/i.test(item);
+                }).join(' ');
+                if (document.getElementById('mytheme'))
+                {
+                    themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+                };
+                localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            }
+            /** 
+             * Reset settings
+             **/
+            var resetSettings = function()
+            {
+                localStorage.setItem("themeSettings", "");
+            }
+
+        </script>
+        <div class="page-wrapper auth">
+            <div class="page-inner bg-brand-gradient">
+                <div class="page-content-wrapper bg-transparent m-0">
+                    <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
+                        <div class="d-flex align-items-center container p-0">
+                            <div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9 border-0">
+                                <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+                                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NTS PM Tool WebApp" aria-roledescription="logo" class="profile-image rounded-circle">
+                                    <span class="page-logo-text mr-1">NDMS Portal</span>
+                                </a>
+                            </div>
+                            <a href="page_register.html" class="btn-link text-white ml-auto">
+                                Create Account
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex-1" style="background: url(img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+                        <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
+                                <div class="card p-4 rounded-plus bg-faded">
+                                    <form id="js-login" novalidate="" action="intel_analytics_dashboard.html">
+                                        <div class="form-group">
+                                            <label class="form-label" for="username">Email-ID</label>
+                                            <input type="email" id="username" class="form-control form-control-lg" placeholder="your commscope email id"  required>
+                                            <div id= "emailerror" class="invalid-feedback">No, you missed this one.</div>
+                                            <div  class="help-block">Your commscope username or Email-ID</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="password">Password</label>
+                                            <input type="password" id="password" class="form-control form-control-lg" placeholder="password"  required>
+                                            <div id= "passworderror" class="invalid-feedback">Sorry, you missed this one.</div>
+                                            <div class="help-block">Your password</div>
+                                        </div>
+
+
+
+
+                                        
+                                         <!-- <div class="form-group">
+                                            <label class="form-label" for="sel1">Projects</label>
+                                               <div class="form-group">
+                                                    <select class="select2 form-control w-100 " id="sel1">
+                                                    <option></option>
+                                                <optgroup label="-------NA Regions-------">                                       
+                                                    <option>COX</option>
+                                                    <option>COMCAST</option>
+                                                    <option>CLARA</option>
+                                                    <option>GCI</option>                                               
+                                                </optgroup>
+                                                <optgroup label="-------EMEA Regions-------">  
+                                                    <option>VM - ISP</option>
+                                                    <option>VM - MUSTANG</option>
+                                                    <option>VM - METRO</option>
+                                                    <option>VM - HFC</option>        
+                                                    <option>COMMUNITY FIBER</option>    
+                                                    <option>WIRELESS - RAN</option>    
+                                                    <option>LOGICAL ENGINEERING</option>                       
+                                                </optgroup>
+                                                   
+                                                    </select>
+                                                    <div class="help-block">Select the project</div>
+                                                </div>
+                                        </div> -->
+
+                                        <!-- <div class="panel-container show">
+                                            <div class="panel-content">
+                                        <div class="form-group">
+                                            <label class="form-label" for="single-default">
+                                                Projects
+                                            </label>
+                                            <select class="select2 form-control w-100  " id="single-default">
+                                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                    <option value="AK">Alaska</option>
+                                                    <option value="HI">Hawaii</option>
+                                                </optgroup>
+                                                <optgroup label="Pacific Time Zone">
+                                                    <option value="CA">California</option>
+                                                    <option value="NV">Nevada</option>
+                                                    <option value="OR">Oregon</option>
+                                                    <option value="WA">Washington</option>
+                                                </optgroup>
+                                                <optgroup label="Mountain Time Zone">
+                                                    <option value="AZ">Arizona</option>
+                                                    <option value="CO">Colorado</option>
+                                                    <option value="ID">Idaho</option>
+                                                    <option value="MT">Montana</option>
+                                                    <option value="NE">Nebraska</option>
+                                                    <option value="NM">New Mexico</option>
+                                                    <option value="ND">North Dakota</option>
+                                                    <option value="UT">Utah</option>
+                                                    <option value="WY">Wyoming</option>
+                                                </optgroup>
+                                                <optgroup label="Central Time Zone">
+                                                    <option value="AL">Alabama</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                    <option value="KY">Kentucky</option>
+                                                    <option value="LA">Louisiana</option>
+                                                    <option value="MN">Minnesota</option>
+                                                    <option value="MS">Mississippi</option>
+                                                    <option value="MO">Missouri</option>
+                                                    <option value="OK">Oklahoma</option>
+                                                    <option value="SD">South Dakota</option>
+                                                    <option value="TX">Texas</option>
+                                                    <option value="TN">Tennessee</option>
+                                                    <option value="WI">Wisconsin</option>
+                                                </optgroup>
+                                                <optgroup label="Eastern Time Zone">
+                                                    <option value="CT">Connecticut</option>
+                                                    <option value="DE">Delaware</option>
+                                                    <option value="FL">Florida</option>
+                                                    <option value="GA">Georgia</option>
+                                                    <option value="IN">Indiana</option>
+                                                    <option value="ME">Maine</option>
+                                                    <option value="MD">Maryland</option>
+                                                    <option value="MA">Massachusetts</option>
+                                                    <option value="MI">Michigan</option>
+                                                    <option value="NH">New Hampshire</option>
+                                                    <option value="NJ">New Jersey</option>
+                                                    <option value="NY">New York</option>
+                                                    <option value="NC">North Carolina</option>
+                                                    <option value="OH">Ohio</option>
+                                                    <option value="PA">Pennsylvania</option>
+                                                    <option value="RI">Rhode Island</option>
+                                                    <option value="SC">South Carolina</option>
+                                                    <option value="VT">Vermont</option>
+                                                    <option value="VA">Virginia</option>
+                                                    <option value="WV">West Virginia</option>
+                                                </optgroup>
+                                            </select>
+                                            <div class="help-block">Use <code>.select2</code> class for basic select2 control.</div>
+                                        </div>
+                                            </div>
+                                            </div> -->
+
+                                            <!-- <div class="panel-container show">
+                                                <div class="panel-content">
+                                                    <div class="panel-tag">
+                                                        How popover is triggered - click | hover | focus | manual. You may pass multiple triggers; separate them with a space. <code>manual</code> cannot be combined with any other trigger.
+                                                    </div>
+                                                    <div class="demo">
+                                                        <button type="button" class="btn btn-outline-success btn-lg" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="Display on hover">Hover</button>
+                                                        <button type="button" class="btn btn-outline-warning btn-lg" data-toggle="popover" data-trigger="click" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="Display on click">Click</button>
+                                                        <button type="button" class="btn btn-outline-info btn-lg" data-toggle="popover" data-trigger="focus" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="Display on focus">Focus</button>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            
+                                            <div class="form-group">
+                                                <label class="form-label" for="Type">Project Type</label>
+                                                    <div class="form-group">
+                                                        <select class="select2 form-control form-control-lg" id="projtype" required>
+                                                            <option></option>
+                                                            <optgroup label="-------NA Regions-------">                                       
+                                                                <option>COX</option>
+                                                                <option>COMCAST</option>
+                                                                <option>CLARA</option>
+                                                                <option>GCI</option>                                               
+                                                            </optgroup>
+                                                            <optgroup label="-------EMEA Regions-------">  
+                                                                <option>VM - ISP</option>
+                                                                <option>VM - MUSTANG</option>
+                                                                <option>VM - METRO</option>
+                                                                <option>VM - HFC</option>        
+                                                                <option>COMMUNITY FIBER</option>    
+                                                                <option>WIRELESS - RAN</option>    
+                                                                <option>LOGICAL ENGINEERING</option>                       
+                                                            </optgroup>
+                                                        </select>
+                                                        <div id= "projerror" class="invalid-feedback">Sorry, you missed this one</div>
+                                                    <div class="help-block">Select the project type</div>
+                                                    </div>
+                                                    
+                                            </div>-->
+
+
+
+
+                                        <div class="form-group">
+                                            <label class="form-label" for="Type">User Type</label>
+                                                <div class="form-group">
+                                                    <select class="select2 form-control form-control-lg" id="usertype" required>
+                                                        <option></option>
+                                                    <option>User</option>                                      
+                                                    <option>Admin</option>
+                                                    <option>Management</option>
+                                                    </select>
+                                                    <div id= "usertypeerror" class="invalid-feedback">Sorry, you missed this one.</div>
+                                                    <div class="help-block" >Select the user type</div>
+                                                </div>
+                                        </div>
+                                        <div class="help-block error-log" id="error" style="color: #fd3995; font-weight:lighter; font-style: inherit; font-size: 23px; "> </div>
+                                        
+                                        <div class="row no-gutters">
+                                            <div class="col-lg-12 pl-lg-1 my-2">
+                                                <button id="js-login-btn" onclick="login()" value="Submit" type="submit" class="btn btn-danger btn-block btn-lg btn-outline-success" 
+                                                data-toggle="popover" data-trigger="hover" data-placement="bottom" title="" data-content="Enter Credentials to Login!" data-original-title="" style="color: aliceblue;">Secure login</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BEGIN Color profile -->
+        <!-- this area is hidden and will not be seen on screens or screen readers -->
+        <!-- we use this only for CSS color refernce for JS stuff -->
+        <p id="js-color-profile" class="d-none">
+            <span class="color-primary-50"></span>
+            <span class="color-primary-100"></span>
+            <span class="color-primary-200"></span>
+            <span class="color-primary-300"></span>
+            <span class="color-primary-400"></span>
+            <span class="color-primary-500"></span>
+            <span class="color-primary-600"></span>
+            <span class="color-primary-700"></span>
+            <span class="color-primary-800"></span>
+            <span class="color-primary-900"></span>
+            <span class="color-info-50"></span>
+            <span class="color-info-100"></span>
+            <span class="color-info-200"></span>
+            <span class="color-info-300"></span>
+            <span class="color-info-400"></span>
+            <span class="color-info-500"></span>
+            <span class="color-info-600"></span>
+            <span class="color-info-700"></span>
+            <span class="color-info-800"></span>
+            <span class="color-info-900"></span>
+            <span class="color-danger-50"></span>
+            <span class="color-danger-100"></span>
+            <span class="color-danger-200"></span>
+            <span class="color-danger-300"></span>
+            <span class="color-danger-400"></span>
+            <span class="color-danger-500"></span>
+            <span class="color-danger-600"></span>
+            <span class="color-danger-700"></span>
+            <span class="color-danger-800"></span>
+            <span class="color-danger-900"></span>
+            <span class="color-warning-50"></span>
+            <span class="color-warning-100"></span>
+            <span class="color-warning-200"></span>
+            <span class="color-warning-300"></span>
+            <span class="color-warning-400"></span>
+            <span class="color-warning-500"></span>
+            <span class="color-warning-600"></span>
+            <span class="color-warning-700"></span>
+            <span class="color-warning-800"></span>
+            <span class="color-warning-900"></span>
+            <span class="color-success-50"></span>
+            <span class="color-success-100"></span>
+            <span class="color-success-200"></span>
+            <span class="color-success-300"></span>
+            <span class="color-success-400"></span>
+            <span class="color-success-500"></span>
+            <span class="color-success-600"></span>
+            <span class="color-success-700"></span>
+            <span class="color-success-800"></span>
+            <span class="color-success-900"></span>
+            <span class="color-fusion-50"></span>
+            <span class="color-fusion-100"></span>
+            <span class="color-fusion-200"></span>
+            <span class="color-fusion-300"></span>
+            <span class="color-fusion-400"></span>
+            <span class="color-fusion-500"></span>
+            <span class="color-fusion-600"></span>
+            <span class="color-fusion-700"></span>
+            <span class="color-fusion-800"></span>
+            <span class="color-fusion-900"></span>
+        </p>
+        <!-- END Color profile -->
+        <!-- base vendor bundle: 
+			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
+						+ pace.js (recommended)
+						+ jquery.js (core)
+						+ jquery-ui-cust.js (core)
+						+ popper.js (core)
+						+ bootstrap.js (core)
+						+ slimscroll.js (extension)
+						+ app.navigation.js (core)
+						+ ba-throttle-debounce.js (core)
+						+ waves.js (extension)
+						+ smartpanels.js (extension)
+						+ src/../jquery-snippets.js (core) -->
+        <script src="{{ url_for('static', filename='js/vendors.bundle.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/app.bundle.js') }}"></script>
+        <script>
+            $("#js-login-btn").click(function(event)
+            {
+
+                // Fetch form to apply custom Bootstrap validation
+                var form = $("#js-login")
+
+                if (form[0].checkValidity() === false)
+                {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.addClass('was-validated');
+                // Perform ajax submit here...
+            });
+
+        </script>
+
+        <script>
+    // var emailArray = ["sanathkumar.shetty@commscope.com", "sunil.dandayuthapani@commscope.com"];
+    // var passwordArray = ["123456","654321"];
+    // var userArray = ["User", "Admin"];
+    // var userFirstName = ["Sanath Kumar Shetty", "Sunil Dandayuthapani"];
+    // var projectArray = ["COMCAST", "COX","CLARA"];
+
+  function login() {
+      event.preventDefault();
+
+      var email = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var usermethod = document.getElementById("usertype").value;
+    //   var projValue = document.getElementById('projtype').value;
+      //var error = document.getElementById("error")
+     // var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+     
+
+
+console.log(usermethod);
+console.log(email);
+//console.log(projValue);
+var return_first = function () {
+    var tmp = null;
+    $.ajax({
+        url: "/userdetails",
+        async:false,
+        type: "GET",
+        data:{ email: email },
+        dataType:'json',
+        success: function(response,textStatus, jqXHR) {
+            // console.log(response.response.data)
+            // console.log(response)
+            tmp = response.response.data;
+            console.log(tmp);
+        }
+    });
+
+    return tmp;
+    }();
+    
+      console.log(return_first);  
+
+      var userFirstNameValue = return_first.firstname;
+      var userEmailAddress = return_first.email;
+      var userpassword = return_first.passwords;
+      var userarray = return_first.permissions
+    //   console.log(userEmailAddress);
+      //console.log(userFirstNameValue);
+      //console.log(i);
+      if (userEmailAddress != email){
+        if (email == "") {
+        //  alert("Email required.");
+         document.getElementById("error").innerHTML= "Email required"; 
+        //  error.textContent = "Email Required!";
+        //  error.style.color = "red";
+          return false;
+        }
+        // else if(!filter.test(email))
+		// {
+		// 	alert("Enter valid email id.");
+        //     return;
+		// }
+        else{
+       // alert("Email does not exist.");
+        document.getElementById("error").innerHTML= "Email does not exist"; 
+        return false;
+        }
+      } else if (userpassword != password) {
+        if (password == "") {
+        //  alert("Password required.");
+        document.getElementById("error").innerHTML= "Password required."; 
+          return false;
+        }
+        //alert("Password does not match.");
+        document.getElementById("error").innerHTML= "Password does not match."; 
+        return false;}
+    //   } else if (userarray != "Management" && usermethod == "Management") {
+    //     if (usermethod == "") {
+    //       //alert("User Type required.");
+    //       document.getElementById("error").innerHTML= "User Type required.";
+    //       return false;
+    //     }
+    //     //alert( email + " does not have access.");
+    //     document.getElementById("error").innerHTML= " You do not have access.";
+    //     return false;
+    //   }
+    //   else if ((userarray != "Management" ||userarray != "Admin") && usermethod == "Admin") {
+    //     if (usermethod == "") {
+    //       //alert("User Type required.");
+    //       document.getElementById("error").innerHTML= "User Type required.";
+    //       return false;
+    //     }
+    //     //alert( email + " does not have access.");
+    //     document.getElementById("error").innerHTML= " You do not have access.";
+    //     return false;
+    //   }
+      else if (usermethod === "User") {
+        localStorage.setItem('userfirstname', userFirstNameValue);
+        localStorage.setItem('useremailaddress', userEmailAddress);
+        localStorage.setItem('usertype', usermethod);
+        // nedd to filllllll
+        window.location = "vm_mustang/User";
+        //window.location = "page_projects.html";
+        return false;
+      }
+      else if (usermethod === "Admin") {
+        localStorage.setItem('userfirstname', userFirstNameValue);
+        localStorage.setItem('useremailaddress', userEmailAddress);
+        localStorage.setItem('usertype', usermethod);
+        window.location = "vm_mustang/Admin";
+        
+        //window.location = "page_projects.html";
+        return false;
+      }
+      else if (usermethod === "Management") {
+        localStorage.setItem('userfirstname', userFirstNameValue);
+        localStorage.setItem('useremailaddress', userEmailAddress);
+        localStorage.setItem('usertype', usermethod);
+        window.location = "vm_mustang/management";
+        //window.location = "page_projects.html";
+        return false;
+      }
+      else {
+      //  alert(email + " you are login Now \n welcome to our website.");
+      //window.location = "active_projects.html";
+
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+        return;
+      }
+    }
+
+        </script>
+
+
+<script src="{{ url_for('static', filename='js/vendors.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/formplugins/select2/select2.bundle.js') }}"></script>
+<script>
+    $(document).ready(function()
+    {
+        $(function()
+        {
+            $('.select2').select2();
+
+            $(".select2-placeholder-multiple").select2(
+            {
+                placeholder: "Select State"
+            });
+            $(".js-hide-search").select2(
+            {
+                minimumResultsForSearch: 1 / 0
+            });
+            $(".js-max-length").select2(
+            {
+                maximumSelectionLength: 2,
+                placeholder: "Select maximum 2 items"
+            });
+            $(".select2-placeholder").select2(
+            {
+                placeholder: "Select a state",
+                allowClear: true
+            });
+
+            $(".js-select2-icons").select2(
+            {
+                minimumResultsForSearch: 1 / 0,
+                templateResult: icon,
+                templateSelection: icon,
+                escapeMarkup: function(elm)
+                {
+                    return elm
+                }
+            });
+
+            function icon(elm)
+            {
+                elm.element;
+                return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+            }
+
+            $(".js-data-example-ajax").select2(
+            {
+                ajax:
+                {
+                    url: "https://api.github.com/search/repositories",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params)
+                    {
+                        return {
+                            q: params.term, // search term
+                            page: params.page
+                        };
+                    },
+                    processResults: function(data, params)
+                    {
+                        // parse the results into the format expected by Select2
+                        // since we are using custom formatting functions we do not need to
+                        // alter the remote JSON data, except to indicate that infinite
+                        // scrolling can be used
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.items,
+                            pagination:
+                            {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: 'Search for a repository',
+                escapeMarkup: function(markup)
+                {
+                    return markup;
+                }, // let our custom formatter work
+                minimumInputLength: 1,
+                templateResult: formatRepo,
+                templateSelection: formatRepoSelection
+            });
+
+            function formatRepo(repo)
+            {
+                if (repo.loading)
+                {
+                    return repo.text;
+                }
+
+                var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+                    "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+                    "<div class='select2-result-repository__meta'>" +
+                    "<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+                if (repo.description)
+                {
+                    markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+                }
+
+                markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+                    "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+                    "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+                    "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+                    "</div>" +
+                    "</div></div>";
+
+                return markup;
+            }
+
+            function formatRepoSelection(repo)
+            {
+                return repo.full_name || repo.text;
+            }
+        });
+    });
+
+</script>
+    </body>
+    <!-- END Body -->
+</html>
